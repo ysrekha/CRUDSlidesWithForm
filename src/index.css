@@ -1,0 +1,244 @@
+/* Global styles applied to the root element of the document */
+:root {
+  /* Set a list of fallback fonts to use for the document */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  
+  /* Set the line height to improve readability */
+  line-height: 1.5;
+  
+  /* Set the default font weight for text */
+  font-weight: 400;
+
+  /* Specify the color schemes supported by the document (light and dark) */
+  color-scheme: light dark;
+  
+  /* Set the default text color with some transparency */
+  color: rgba(255, 255, 255, 0.87);
+  
+  /* Set the background color for the root element */
+  background-color: #242424;
+
+  /* Prevent the browser from synthesizing missing font styles (e.g., bold, italic) */
+  font-synthesis: none;
+
+  /* Optimize text rendering for legibility */
+  text-rendering: optimizeLegibility;
+
+  /* Improve text rendering on webkit browsers */
+  -webkit-font-smoothing: antialiased;
+  
+  /* Improve text rendering on Firefox on macOS */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Styles for all anchor (<a>) elements */
+a {
+  /* Set the font weight to medium for anchor elements */
+  font-weight: 500;
+  
+  /* Set the text color for anchor elements */
+  color: #646cff;
+  
+  /* Remove underline from anchor elements */
+  text-decoration: inherit;
+}
+
+/* Styles for anchor elements when hovered over */
+a:hover {
+  /* Change the text color when the anchor element is hovered */
+  color: #535bf2;
+}
+
+/* Styles for the body of the document */
+body {
+  /* Remove default margin */
+  margin: 0;
+  
+  /* Use Flexbox layout to center content horizontally and vertically */
+  display: flex;
+  place-items: center;
+  
+  /* Set minimum width and height to ensure proper display on smaller screens */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Styles for <h1> elements */
+h1 {
+  /* Set the font size for <h1> elements */
+  font-size: 3.2em;
+  
+  /* Adjust the line height for <h1> elements */
+  line-height: 1.1;
+}
+
+/* Styles for button elements */
+button {
+  /* Round the corners of the button */
+  border-radius: 8px;
+  
+  /* Set a transparent border to avoid layout shifts */
+  border: 1px solid transparent;
+  
+  /* Add padding to the button */
+  padding: 0.6em 1.2em;
+  
+  /* Set the font size for button text */
+  font-size: 1em;
+  
+  /* Set the font weight for button text */
+  font-weight: 500;
+  
+  /* Inherit font family from the parent element */
+  font-family: inherit;
+  
+  /* Set the background color for the button */
+  background-color: #1a1a1a;
+  
+  /* Change the cursor to a pointer when hovering over the button */
+  cursor: pointer;
+  
+  /* Add a transition effect for border color changes */
+  transition: border-color 0.25s;
+}
+
+/* Styles for button elements when hovered over */
+button:hover {
+  /* Change the border color when the button is hovered */
+  border-color: #646cff;
+}
+
+/* Styles for button elements when they are focused */
+button:focus,
+button:focus-visible {
+  /* Add an outline to the button when focused */
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Styles applied when the user prefers a light color scheme */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Set text color for light color scheme */
+    color: #213547;
+    
+    /* Set background color for light color scheme */
+    background-color: #ffffff;
+  }
+  
+  /* Styles for anchor elements when hovered over in a light color scheme */
+  a:hover {
+    /* Change the text color when hovered over in a light color scheme */
+    color: #747bff;
+  }
+  
+  /* Styles for buttons in a light color scheme */
+  button {
+    /* Set a light background color for buttons in a light color scheme */
+    background-color: #f9f9f9;
+  }
+}
+
+/* Ensure that the parent container (if any) does not interfere with the positioning */
+.thumbnail-container {
+  position: relative;
+  display: inline-block;
+}
+
+.thumbnail-container img {
+  display: block;
+}
+
+.thumbnail-container .order-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+  background-color: #fff;
+  color: #000;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: 1px solid #ccc;
+}
+
+.thumbnail-container button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.thumbnail-container button:hover {
+  background-color: #c00;
+}
+.thumbnail-container {
+  position: relative;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.order-number {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.2rem 0.5rem;
+}
+
+.edit-form {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.thumbnail-container {
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+}
+
+.thumbnail-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* .order-number {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  z-index: 10; /* Ensure it's on top 
+} */
+.order-number {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  width: 1.5rem; /* Adjust width to fit your design */
+  height: 1.5rem; /* Same as width to keep it circular */
+  border-radius: 50%; /* Makes it circular */
+  display: flex;
+  align-items: center; /* Center the text vertically */
+  justify-content: center; /* Center the text horizontally */
+  font-size: 1rem;
+  z-index: 10; /* Ensure it's on top */
+}
+
