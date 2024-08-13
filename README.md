@@ -35,3 +35,4 @@ export default {
 # CRUDSlidesWeek15
 # Added Project requiement comments for CRUDSlidesWeek15
 # CRUDSlidesWithForm
+# Modifies modal Form to create item image dynamically
