@@ -36,3 +36,4 @@ export default {
 # Added Project requiement comments for CRUDSlidesWeek15
 # CRUDSlidesWithForm
 # Modifies modal Form to create item image dynamically
+# Modified the code to reflect edit and create in state hooks

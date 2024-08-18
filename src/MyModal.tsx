@@ -1,25 +1,31 @@
-import { Button, Modal } from "react-bootstrap";
-import CreateForm from "./CreateForm";
-import { useState } from "react";
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import CreateForm from './CreateForm'; // Import the CreateForm component
 
+// Define the type for the props expected by the MyModal component
 interface MyModalProps {
-  onSave: (values: { image: string }) => void;
-  onCancel: () => void;
+  onSave: (values: { image: string; description: string }) => void; // Callback for saving form data
+  onCancel: () => void; // Callback for canceling form input
 }
 
+// Define the MyModal component
 const MyModal: React.FC<MyModalProps> = ({ onSave, onCancel }) => {
-  const [showModal, setShowModal] = useState(false);
-  const [formValues, setFormValues] = useState({ image: '' });
+  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+  // State to manage form values with both image and description
+  const [formValues, setFormValues] = useState({ image: '', description: '' });
 
+  // Handlers for showing and hiding the modal
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
-  const handleSave = (values: { image: string }) => {
+  // Handle form save action
+  const handleSave = (values: { image: string; description: string }) => {
     setFormValues(values);
     onSave(values);
     handleClose();
   };
 
+  // Handle cancel action
   const handleCancel = () => {
     onCancel();
     handleClose();
@@ -28,10 +34,10 @@ const MyModal: React.FC<MyModalProps> = ({ onSave, onCancel }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Open Form
+        Create Form
       </Button>
 
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal show={showModal} onHide={handleClose} className="bottom-modal">
         <Modal.Header closeButton>
           <Modal.Title>Create Form</Modal.Title>
         </Modal.Header>
@@ -39,7 +45,7 @@ const MyModal: React.FC<MyModalProps> = ({ onSave, onCancel }) => {
           <CreateForm
             onSave={handleSave}
             onCancel={handleCancel}
-            formValues={formValues}
+            formValues={formValues} // Provide formValues with both image and description
           />
         </Modal.Body>
         <Modal.Footer>
@@ -53,3 +59,4 @@ const MyModal: React.FC<MyModalProps> = ({ onSave, onCancel }) => {
 };
 
 export default MyModal;
+

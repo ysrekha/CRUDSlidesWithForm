@@ -1,87 +1,51 @@
-import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
-type CreateFormProps = {
-  onSave: (formValues: { image: string }) => void;
-  onCancel: () => void;
-  formValues: { image: string };
-};
+// Define the props expected by the CreateForm component
+interface CreateFormProps {
+  onSave: (values: { image: string; description: string }) => void; // Callback for saving form data
+  onCancel: () => void; // Callback for canceling form input
+  formValues?: { image: string; description: string }; // Optional form values for editing
+}
 
-export default function CreateForm({
-  onSave,
-  onCancel,
-  formValues
-}: CreateFormProps) {
-  const [localValues, setLocalValues] = useState(formValues);
-  const [imageError, setImageError] = useState<string | null>(null);
+// Define the CreateForm component
+export default function CreateForm({ onSave, onCancel, formValues }: CreateFormProps) {
+  // Local state for managing form input
+  const [image, setImage] = useState(formValues?.image || ''); // Initialize with existing or empty string
+  const [description, setDescription] = useState(formValues?.description || ''); // Initialize with existing or empty string
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setLocalValues(prevValues => ({
-      ...prevValues,
-      [name]: value
-    }));
-    if (name === 'image') {
-      setImageError(null); // Clear image error when updating URL
-    }
-  };
-
-  const handleClear = () => {
-    setLocalValues({ image: '' });
-    setImageError(null);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (localValues.image) {
-      onSave(localValues);
-    } else {
-      setImageError('Image URL is required.');
-    }
-  };
-
-  const handleImageLoadError = () => {
-    setImageError('Failed to load image. Please check the URL.');
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave({ image, description }); // Call the onSave callback with form data
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label htmlFor="new-image">Image URL</Form.Label>
+      <Form.Group controlId="formImage">
+        <Form.Label>Image URL</Form.Label>
         <Form.Control
-          id="new-image"
           type="text"
-          name="image"
-          value={localValues.image}
-          onChange={handleChange}
           placeholder="Enter image URL"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
       </Form.Group>
-
-      {localValues.image && (
-        <div className="mb-3">
-          <h5>Image Preview:</h5>
-          <img
-            src={localValues.image}
-            alt="Preview"
-            style={{ maxWidth: '100%', maxHeight: '300px' }}
-            onError={handleImageLoadError}
-          />
-          {imageError && <Alert variant="danger">{imageError}</Alert>}
-        </div>
-      )}
-
-      <div className="d-flex justify-content-end">
-        <Button variant="secondary" onClick={handleClear} className="me-2">
-          Clear
-        </Button>
-        <Button variant="secondary" onClick={onCancel} className="me-2">
-          Cancel
-        </Button>
-        <Button type="submit" variant="primary">
-          Save
-        </Button>
-      </div>
+      <Form.Group controlId="formDescription">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Save
+      </Button>
+      <Button variant="secondary" onClick={onCancel} className="ms-2">
+        Cancel
+      </Button>
     </Form>
   );
 }
