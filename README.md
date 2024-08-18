@@ -37,3 +37,4 @@ export default {
 # CRUDSlidesWithForm
 # Modifies modal Form to create item image dynamically
 # Modified the code to reflect edit and create in state hooks
+# Added a few comments

@@ -17,8 +17,13 @@ export default function CreateForm({ onSave, onCancel, formValues }: CreateFormP
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ image, description }); // Call the onSave callback with form data
+    if (image.trim() === '' || description.trim() === '') {
+      alert("Both fields are required.");
+      return;
+    }
+    onSave({ image, description });
   };
+  
 
   return (
     <Form onSubmit={handleSubmit}>

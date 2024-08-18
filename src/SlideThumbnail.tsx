@@ -16,13 +16,13 @@ type SlideThumbnailProps = {
 export default function SlideThumbnail({ slide, onDelete, onEdit }: SlideThumbnailProps) {
   // Handle the editing of the slide image and description
   const handleEdit = () => {
-    // Prompt user to enter new image URL and description
     const newImage = prompt("Enter new image URL:", slide.image);
     const newDescription = prompt("Enter new description:", slide.description);
-    if (newImage !== null && newDescription !== null) {
-      onEdit(slide.id, newImage, newDescription); // Call the onEdit callback with the new image URL and description
+    if (newImage && newDescription) { // Check for non-null values
+      onEdit(slide.id, newImage, newDescription);
     }
   };
+  
 
   return (
     <div className="mb-3">
